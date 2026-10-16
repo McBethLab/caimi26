@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinical Validation of Commercial AI Prostate SBRT Planning · Penn Radiation Oncology AI</title>
+<meta name="description" content="Commercial AI prostate SBRT planning against manual plans: dosimetric equivalence, with the remaining gaps in institution-specific organ-at-risk objectives. Scientific poster at SIIM CAIMI26.">
+<meta property="og:title" content="Clinical Validation of Commercial AI Prostate SBRT Planning">
+<meta property="og:description" content="Dosimetric equivalence with manual plans, with deficiencies isolated to institution-specific organ-at-risk objectives.">
+<meta property="og:image" content="https://mcbethlab.github.io/caimi26/prostate-sbrt/img/fig-blinded-preference.png">
+<meta name="theme-color" content="#022c32">
+<link rel="preload" href="../assets/fonts/AtkinsonHyperlegibleNext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a href="../">Penn Radiation Oncology AI</a>
+    <span class="where">SIIM CAIMI26, Philadelphia</span>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Clinical Validation of Commercial AI Prostate SBRT Planning</h1>
+      <p class="lede">Dosimetric equivalence with manual plans, with the deficiencies isolated to institution-specific organ-at-risk objectives.</p>
+      <p class="credits">
+        <strong>Nayoon J. Lee, Steven Philbrook, MS, William R. Green, MD, Eva Berlin, MD, John Chojnowski, MD, PhD, Nicholas Molina, Jonathan Cheng, Sara Arias-Obando, Rafe McBeth, PhD</strong><br>
+        Penn Medicine, Department of Radiation Oncology<br>
+        Scientific poster on Monday, October 26, 12:15 to 1:00 PM ET, in the Commons outside the Arthur H. Rubenstein Auditorium
+      </p>
+    </div>
+  </section>
+
+  <section aria-labelledby="why">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="why">The last mile</h2>
+      </div>
+      <div class="prose">
+        <p>Commercial AI planning systems reach clinically acceptable quality and cut planning time, but they are trained on generalized objectives that often miss an institution's own organ-at-risk priorities and contouring conventions. We tested whether those gaps come from missing institutional knowledge rather than from the algorithm, and whether a lightweight institutional model could close them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="how">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="how">What we did</h2>
+      </div>
+      <ul class="plain">
+        <li>Replanned 23 prostate SBRT cases (40 Gy in 5 fractions) with a commercial AI system trained on a 36.25 Gy in 5 fractions regimen, on the same CT and structure sets as the approved clinical plans, normalized to D95% = 100%.</li>
+        <li>Compared PTV D95% and D99%, the Paddick conformity index and our institutional organ-at-risk constraints for the urethra, bladder, rectum, femoral heads, penile bulb and skin.</li>
+        <li>Ran a blinded A/B preference test on 20 cases with 3 physicians.</li>
+        <li>Checked five AI plans with gamma-based QA at 2%/2 mm.</li>
+        <li>Benchmarked a separate model, trained on 21 institutional cases with our bowel constraints prioritized, against the commercial one.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="found">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="found">What we found</h2>
+      </div>
+      <ul class="results">
+        <li><span class="figure">&lt;10 min</span><span>per AI plan, always with 2 arcs (manual plans used 2 or 3) and an average of 438 fewer monitor units. Every AI plan met PTV D95%, with comparable conformality.</span></li>
+        <li><span class="figure">99.2%</span><span>of DVH objectives met by the AI plans when the urethra is excluded (390 of 393), and 93.5% with it. The violations sat mostly in urethral D0.035cc (mean excess about 101 cGy), an objective left out of the vendor's training.</span></li>
+        <li><span class="figure">0 of 60</span><span>blinded evaluations rated a plan unacceptable. Where reviewers stated a preference, 86% chose the manual plan; 42% of evaluations stated none.</span></li>
+        <li><span class="figure">100%</span><span>gamma pass rate (2%/2 mm) in QA of five AI plans.</span></li>
+        <li><span class="figure">84 cGy</span><span>The in-house model matched target coverage, with CTV D99% within 84 cGy, and spared bowel better than the commercial model.</span></li>
+      </ul>
+
+      <div class="charts">
+        <figure class="chart">
+          <img src="img/fig-dose-difference.png" alt="Lollipop chart of the average dose difference, AI minus human in cGy, for each structure objective. PTV coverage objectives sit at or near zero; the AI is higher for most rectal objectives, skin, small bowel and urethra, and lower for femoral heads and most penile objectives." width="1200" height="1370" loading="lazy">
+          <figcaption>Average dosimetric difference by structure objective, AI minus human expert.</figcaption>
+        </figure>
+        <figure class="chart">
+          <img src="img/fig-blinded-preference.png" alt="Stacked bar chart of blinded plan preference by evaluator role. Overall: prefer manual 30 (50%), prefer AI 5 (8%), no preference 25 (42%)." width="1400" height="761" loading="lazy">
+          <figcaption>Blinded plan preference by evaluator role: a network attending, a faculty physician, a PGY-2 resident, and overall.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="means">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="means">What it means</h2>
+      </div>
+      <div class="prose">
+        <p>Commercial AI planning for prostate SBRT generalizes safely across regimens and comes close to clinical equivalence with manual planning. What remains is in the institutional objectives the vendor never saw, not in the optimizer. A lightweight model trained on 21 cases closed that gap, which makes institutional data the limiting factor for clinical readiness.</p>
+        <p>That gives us a data-efficient way to adapt a commercial planning system to local protocols without retraining it from scratch.</p>
+      </div>
+      <p class="prose contact">Write to Rafe McBeth at <a href="mailto:rafe.mcbeth@pennmedicine.upenn.edu">rafe.mcbeth@pennmedicine.upenn.edu</a>.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="sibling">
+    <div class="wrap">
+      <div class="sibling">
+        <h2 id="sibling">Also from our lab</h2>
+        <p><a href="../data-engine/">Spinning the Data Engine</a>: a review portal for curating training data and running blinded AI-versus-physician comparisons. AI Builder Showcase video, playing in the Commons.</p>
+        <p><a href="../beyond-deployment/">Beyond Deployment</a>: continuous quality assurance for auto-segmentation models once they are live. Live demo on Monday, October 26, 4:30 to 6:00 PM ET, Arthur H. Rubenstein Auditorium.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Penn Medicine, Department of Radiation Oncology. <a href="../">All of our CAIMI26 projects</a></div>
+</footer>
+</body>
+</html>
