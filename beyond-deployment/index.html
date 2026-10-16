@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyond Deployment · Penn Radiation Oncology AI</title>
+<meta name="description" content="An in-house system for continuous quality assurance of deployed auto-segmentation models. Live demo at SIIM CAIMI26.">
+<meta property="og:title" content="Beyond Deployment">
+<meta property="og:description" content="Continuous quality assurance for auto-segmentation models once they are live in the clinic.">
+<meta name="theme-color" content="#022c32">
+<link rel="preload" href="../assets/fonts/AtkinsonHyperlegibleNext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a href="../">Penn Radiation Oncology AI</a>
+    <span class="where">SIIM CAIMI26, Philadelphia</span>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Beyond Deployment</h1>
+      <p class="lede">An in-house system for continuous quality assurance of auto-segmentation models once they are live in the clinic.</p>
+      <p class="credits">
+        <strong>Jonathan Cheng, Nicholas Molina, Kelechi Obike, Sara Arias-Obando, Rafe McBeth, PhD</strong><br>
+        Penn Medicine, Department of Radiation Oncology<br>
+        Live demo on Monday, October 26, 4:30 to 6:00 PM ET, Arthur H. Rubenstein Auditorium
+      </p>
+    </div>
+  </section>
+
+  <section aria-labelledby="why">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="why">Deploying a model is not the last step</h2>
+      </div>
+      <div class="prose">
+        <p>AI now drafts the organ and tumor contours that decide where radiation goes. We QA our linear accelerators on a rigorous schedule, but there is no standard yet for checking that a deployed model keeps doing what the clinic needs. Before that standard can exist, someone has to measure how these models perform over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="what">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="what">What it does</h2>
+      </div>
+      <ul class="plain">
+        <li>Pulls each treatment plan's CT, contours and dose from our Orthanc archive.</li>
+        <li>Separates clinician-approved contours from AI-generated ones using their DICOM approval status.</li>
+        <li>Matches structures across naming conventions, so a clinician's "L_Lung" pairs with a model's "Lung_L": a curated alias list first, then best overlap, exact names and finally fuzzy matching.</li>
+        <li>Computes Dice, 95th-percentile Hausdorff and surface Dice for every matched pair with dcm-utils, our lab's DICOM geometry package.</li>
+        <li>Shows score distributions, per-structure breakdowns, model-version comparisons, trends over time and a patient search for diagnosing individual contours.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="scale">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="scale">Running on real clinical data</h2>
+      </div>
+      <ul class="results">
+        <li><span class="figure">8,097</span><span>studies processed to date.</span></li>
+        <li><span class="figure">7,422</span><span>patients covered.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="ask">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="ask">Tell us what you think</h2>
+        <p>Come to the live demo, or find us at the networking reception on Monday, October 26, 6:00 to 7:00 PM ET.</p>
+      </div>
+      <ul class="plain">
+        <li>Is continuous monitoring of deployed auto-segmentation useful, and could your institution adopt it?</li>
+        <li>What agreement should separate an acceptable AI contour from one that needs editing, and should that differ by structure?</li>
+        <li>What would a daily user want that we haven't thought to build?</li>
+      </ul>
+      <p class="prose contact">Or write to Rafe McBeth at <a href="mailto:rafe.mcbeth@pennmedicine.upenn.edu">rafe.mcbeth@pennmedicine.upenn.edu</a>.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="sibling">
+    <div class="wrap">
+      <div class="sibling">
+        <h2 id="sibling">Also from our lab: Spinning the Data Engine</h2>
+        <p>A review portal for curating training data and running blinded AI-versus-physician comparisons before a model reaches the clinic.</p>
+        <p>AI Builder Showcase video, playing in the Commons. <a href="../data-engine/">About the project</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Penn Medicine, Department of Radiation Oncology. <a href="../">Both of our CAIMI26 projects</a></div>
+</footer>
+</body>
+</html>
