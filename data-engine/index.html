@@ -80,11 +80,11 @@
 
           <table class="dice" hidden>
             <caption>Agreement for this case, across the whole 3D volume</caption>
-            <thead><tr><th scope="col">Target</th><th scope="col">Dice</th><th scope="col">Hausdorff</th></tr></thead>
+            <thead><tr><th scope="col">Target</th><th scope="col">Dice</th></tr></thead>
             <tbody>
-              <tr><th scope="row">GTV</th><td>0.91</td><td>0.61 cm</td></tr>
-              <tr><th scope="row">CTV</th><td>0.87</td><td>0.99 cm</td></tr>
-              <tr><th scope="row">PTV</th><td>0.86</td><td>0.98 cm</td></tr>
+              <tr><th scope="row">GTV</th><td>0.91</td></tr>
+              <tr><th scope="row">CTV</th><td>0.87</td></tr>
+              <tr><th scope="row">PTV</th><td>0.86</td></tr>
             </tbody>
           </table>
 
@@ -119,7 +119,7 @@
             <h3>Validate</h3>
             <p>Blinded or open A/B review of AI against physician contours, as above. Structure names that differ between studies, like "(P) GTV" and "(P) GTV_APBI", are matched to the same target automatically.</p>
           </div>
-          <img class="shot" src="img/stage-validate.jpg" alt="An open A/B review: the structure list groups Ground Truth and AI targets, and the axial view shows both with Dice and Hausdorff for each pair in its corner" width="1600" height="1464" loading="lazy">
+          <img class="shot" src="img/stage-validate.jpg" alt="An open A/B review: the structure list groups Ground Truth and AI targets, and the axial view shows both with the Dice score for each pair in its corner" width="1600" height="1464" loading="lazy">
         </li>
         <li class="stop">
           <div class="prose">
@@ -136,16 +136,16 @@
   <section aria-labelledby="study">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="study">Already used for a real blinded study</h2>
-        <p>An IRB-approved feasibility study ran entirely in the portal's blinded workflow. Three breast radiation oncologists reviewed AI and physician-drawn partial-breast targets for 25 consecutive cases the model had never seen, for 225 paired assessments in all.</p>
+        <h2 id="study">Tested in a blinded study</h2>
+        <p>An IRB-approved feasibility study ran entirely in the portal's blinded workflow. Three breast radiation oncologists reviewed AI and physician-drawn partial-breast targets for 25 consecutive cases the model had never seen: 75 blinded reviews in all, each rating the GTV, CTV and PTV.</p>
       </div>
       <ul class="results">
-        <li><span class="figure">64%</span><span>of the 45 reviews that stated a preference chose the AI contours (29 against 16, p = 0.04).</span></li>
-        <li><span class="figure">85%</span><span>of reviews rated the AI contours clinically acceptable on all three targets, against 77% for the physician contours.</span></li>
-        <li><span class="figure">p ≥ 0.40</span><span>no significant difference in mean quality scores between AI and physician contours for GTV, CTV or PTV.</span></li>
-        <li><span class="figure">0.65</span><span>inter-rater reliability (Gwet's AC1), which is substantial agreement between the three reviewers.</span></li>
+        <li><span class="figure">64%</span><span>of reviews with a stated preference favored the AI contours (29 of 45). By case, 12 against 8 (p = 0.50). The other 30 of the 75 reviews stated no preference.</span></li>
+        <li><span class="figure">88%</span><span>of AI contour sets were acceptable on all three targets, against 80% physician-drawn (by case, 2 of 3 reviewers; p = 0.73).</span></li>
+        <li><span class="figure">p ≥ 0.40</span><span>No significant difference in quality scores, AI vs physician: GTV 2.63 vs 2.60, CTV 2.77 vs 2.77, PTV 2.75 vs 2.64.</span></li>
       </ul>
       <p class="cite">Berlin E, Byrd B, Molina N, Philbrook S, Kassick M, Freedman GM, Taunk NK, Green WR, McBeth R. A Blinded Comparison of Artificial Intelligence-Generated versus Physician-Drawn Target Contours for Partial Breast Irradiation. ASTRO 2026. <a href="https://poster.astro.org/astro/2026/2026-astros-68th-annual-meeting/4212074/eva.berlin.a.blinded.comparison.of.artificial.intelligence-generated.vs.html">View the poster</a></p>
+      <p class="cite">Full manuscript under review: Berlin EE, … McBeth R. Blinded Comparison of AI-Generated Versus Physician-Drawn Target Contours for Partial Breast Irradiation. Practical Radiation Oncology, AI in Radiotherapy special issue (submitted Oct 2026).</p>
     </div>
   </section>
 
@@ -155,7 +155,7 @@
         <h2 id="built">How we built it</h2>
       </div>
       <div class="prose">
-        <p>Python and Flask on the server, a hand-written canvas viewer in the browser, PostgreSQL for reviews and an Orthanc DICOM server for studies, all packaged with Docker and uv so it starts the same way on any machine. Dice and Hausdorff come from dcm-utils, the DICOM geometry package our lab shares across projects.</p>
+        <p>Python and Flask on the server, a hand-written canvas viewer in the browser, PostgreSQL for reviews and an Orthanc DICOM server for studies, all packaged with Docker and uv so it starts the same way on any machine. Overlap metrics come from dcm-utils, the DICOM geometry package our lab shares across projects.</p>
         <p>It was built largely with Claude Code. We brainstorm a design, write a plan, hand the tasks to subagents and review every change before it merges.</p>
       </div>
     </div>
