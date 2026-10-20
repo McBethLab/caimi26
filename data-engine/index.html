@@ -30,8 +30,12 @@
         Penn Medicine, Department of Radiation Oncology<br>
         AI Builder Showcase video, shown in the Commons throughout the conference
       </p>
-      <div class="video" id="video">
-        <p>The two-minute showcase video will play here.</p>
+      <div class="video has-video" id="video">
+        <video controls playsinline preload="metadata" poster="video/poster.jpg" width="1280" height="720"
+               aria-label="Two-minute showcase video, silent, with on-screen captions">
+          <source src="video/caimi26-data-engine.mp4" type="video/mp4">
+          Your browser can't play this video. <a href="video/caimi26-data-engine.mp4">Download it</a>.
+        </video>
       </div>
     </div>
   </section>
@@ -113,6 +117,7 @@
             <h3>Predict</h3>
             <p>Upload a model's raw output with the CT and see it on the image as a mask, a probability heatmap, a confidence penumbra or an entropy map, with a live threshold.</p>
           </div>
+          <img class="shot" src="img/stage-predict.jpg" alt="The Predictions panel showing the APBI multichannel model's CTV channel as a heatmap at 65 percent opacity inside the physician's CTV outline, with the probability under the cursor, 1.00, in the pane's corner" width="1600" height="1223" loading="lazy">
         </li>
         <li class="stop">
           <div class="prose">
