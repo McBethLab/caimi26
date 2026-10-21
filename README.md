@@ -1,4 +1,4 @@
-# Penn Radiation Oncology AI at SIIM CAIMI26
+# Penn Medicine RadOnc AI Lab at SIIM CAIMI26
 
 The project pages behind the QR codes at SIIM CAIMI26 (Philadelphia, October 26–27, 2026), served at
 <https://mcbethlab.github.io/caimi26/>.
