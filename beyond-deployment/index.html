@@ -52,9 +52,52 @@
         <li>Pulls each treatment plan's CT, contours and dose from our Orthanc archive.</li>
         <li>Separates clinician-approved contours from AI-generated ones using their DICOM approval status.</li>
         <li>Matches structures across naming conventions, so a clinician's "L_Lung" pairs with a model's "Lung_L": a curated alias list first, then best overlap, exact names and finally fuzzy matching.</li>
-        <li>Computes Dice, 95th-percentile Hausdorff and surface Dice for every matched pair with dcm-utils, our lab's DICOM geometry package.</li>
-        <li>Shows score distributions, per-structure breakdowns, model-version comparisons, trends over time and a patient search for diagnosing individual contours.</li>
+        <li>Scores every matched pair with dcm-utils, our lab's DICOM geometry package, for overlap (Dice, Jaccard, surface Dice at 1&nbsp;mm, and a target-weighted Dice that counts disagreement near the tumor most), boundary distance (average surface distance, and Hausdorff at the 95th percentile and the maximum) and editing effort (added path length: how much contour a clinician would redraw). It also records each contour's volume and how many separate pieces it has.</li>
+        <li>Shows the cohort's averages, score distributions per structure, trends over time, model-version comparisons and a patient search. Clicking any point on a chart opens that patient's results.</li>
+        <li>Never names a patient: no patient ID leaves the database, patients and studies appear only as anonymized codes, and study dates only as years.</li>
       </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="metrics">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="metrics">One number is never enough</h2>
+        <p>Each metric misses something another one catches, so the dashboard shows them side by side. Two de-identified cases from a separate research set show why. The dashboard's own Methodology page works through every metric, with its formula and a real scan.</p>
+      </div>
+
+      <div class="case">
+        <figure>
+          <img src="img/surface-dice.jpg" alt="A breast target on one CT slice: the AI contour's outline is green where it lies within 1 mm of the approved contour and red where it lies further away, and it is mostly red" width="900" height="900" loading="lazy">
+          <figcaption>The AI contour's outline: green within 1&nbsp;mm of the approved contour, red further away.</figcaption>
+        </figure>
+        <div class="prose">
+          <h3>High overlap, boundary off</h3>
+          <p>The AI's target volume overlaps the approved one with a Dice of 0.87, which sounds close. But the AI contour sits on average about 2&nbsp;mm inside the approved one, and only 23% of its surface lies within 1&nbsp;mm of it. Surface Dice, 0.23 here, asks how much of the boundary a clinician could accept without editing.</p>
+        </div>
+      </div>
+
+      <div class="case">
+        <figure>
+          <img src="img/stray-fragment.jpg" alt="A coronal CT view: the approved tumor contour in blue and the AI contour in amber in the breast, a small red AI piece in the upper abdomen, and a white arrow joining them" width="900" height="900" loading="lazy">
+          <figcaption>Approved contour blue, AI contour amber, the stray AI piece red. The arrow is the maximum Hausdorff distance.</figcaption>
+        </figure>
+        <div class="prose">
+          <h3>Mostly right, with a piece 18&nbsp;cm away</h3>
+          <p>By Dice alone, this tumor contour looks mostly right. The distances and the piece count show that the AI also drew a small second piece far from the target.</p>
+          <table class="dice">
+            <caption>The same AI contour, scored five ways</caption>
+            <thead><tr><th scope="col">Metric</th><th scope="col">Value</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Dice</th><td>0.75</td></tr>
+              <tr><th scope="row">Surface Dice (1&nbsp;mm)</th><td>0.34</td></tr>
+              <tr><th scope="row">Hausdorff, 95th percentile</th><td>172&nbsp;mm</td></tr>
+              <tr><th scope="row">Hausdorff, maximum</th><td>181&nbsp;mm</td></tr>
+              <tr><th scope="row">Separate pieces (AI)</th><td>2</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </section>
 

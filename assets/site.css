@@ -217,3 +217,12 @@ footer { border-top: 1px solid var(--teal); padding: 32px 0 48px; color: var(--m
 .chart img { background: #fff; padding: 12px; border-radius: 4px; }
 .chart figcaption { margin-top: 10px; color: var(--mist); font-size: var(--step--1); max-width: 52ch; }
 .cite + .cite { margin-top: 10px; }
+
+/* Beyond Deployment: a case figure beside what its metrics say. */
+.case { display: grid; gap: clamp(20px, 3vw, 40px); align-items: start; }
+.case + .case { margin-top: clamp(40px, 6vw, 72px); }
+@media (min-width: 880px) { .case { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); } }
+.case figure { margin: 0; }
+.case img { width: 100%; border: 1px solid var(--teal); background: #000; }
+.case figcaption { margin-top: 10px; color: var(--mist); font-size: var(--step--1); }
+.case h3 + p { margin-top: 14px; }
