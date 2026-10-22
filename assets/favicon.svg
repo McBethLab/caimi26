@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- The site's own mark: the loop from first label to monitoring (cyan),
+       with the orange marker the pages use for the one thing to look at. -->
+  <rect width="64" height="64" rx="14" fill="#022c32"/>
+  <circle cx="31" cy="33" r="17" fill="none" stroke="#56c5d0" stroke-width="7"/>
+  <circle cx="45" cy="19" r="9" fill="#faa619" stroke="#022c32" stroke-width="4"/>
+</svg>

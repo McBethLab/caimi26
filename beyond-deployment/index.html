@@ -7,8 +7,12 @@
 <meta name="description" content="An in-house system for continuous quality assurance of deployed auto-segmentation models. Live demo at SIIM CAIMI26.">
 <meta property="og:title" content="Beyond Deployment">
 <meta property="og:description" content="Continuous quality assurance for auto-segmentation models once they are live in the clinic.">
+<meta property="og:image" content="https://mcbethlab.github.io/caimi26/beyond-deployment/img/card.jpg">
 <meta name="theme-color" content="#022c32">
 <link rel="preload" href="../assets/fonts/AtkinsonHyperlegibleNext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
@@ -63,6 +67,33 @@
         <li>Shows the cohort's averages, score distributions per structure, trends over time, model-version comparisons and a patient search. Clicking any point on a chart opens that patient's results.</li>
         <li>Never names a patient: no patient ID leaves the database, patients and studies appear only as anonymized codes, and study dates only as years.</li>
       </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="inside">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="inside">Inside the dashboard</h2>
+        <p>It runs on Penn's network, so here is what you would see. The numbers are the live cohort's on the day of capture; patients only ever appear as anonymized codes.</p>
+      </div>
+      <div class="shots">
+        <figure>
+          <img src="img/dashboard-overview.jpg" alt="The dashboard's overview: one line on the cohort behind the numbers, then average Dice, surface Dice and Jaccard under Overlap, four distances under Boundary distance, and added path length under Editing effort" width="1600" height="602" loading="lazy">
+          <figcaption>The overview: the cohort behind the numbers, then the averages grouped by what they measure, each linked to how it is measured.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/dashboard-boxplot.jpg" alt="Box plots of the 95th-percentile Hausdorff distance for each cardiovascular structure, with every case as a dot and a note that 143 points lie above the chart" width="1600" height="836" loading="lazy">
+          <figcaption>Every case, structure by structure. The axis fits the boxes and says how many points fall outside it, one click from showing them all.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/dashboard-side-panel.jpg" alt="A clicked point opens a side panel listing that patient's results, structure by structure, with every metric, the case code and the study year" width="1600" height="1110" loading="lazy">
+          <figcaption>Click any point to see that patient's results, labelled only by case code and study year.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/dashboard-model-comparison.jpg" alt="A scatter plot of Dice for the same cases under Model 2.0 and Model 3.0, with a dashed line of equal performance" width="1600" height="835" loading="lazy">
+          <figcaption>Two model versions on the same cases: points above the line mean the newer model did better.</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 

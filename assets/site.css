@@ -226,3 +226,15 @@ footer { border-top: 1px solid var(--teal); padding: 32px 0 48px; color: var(--m
 .case img { width: 100%; border: 1px solid var(--teal); background: #000; }
 .case figcaption { margin-top: 10px; color: var(--mist); font-size: var(--step--1); }
 .case h3 + p { margin-top: 14px; }
+
+/* Hub: an image at the top of each project card. Charts sit on white, as on
+   their own page. */
+.project .thumb { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border: 1px solid var(--teal); margin-bottom: 20px; background: #000; }
+.project .thumb.chart-thumb { object-fit: contain; background: #fff; padding: 10px; }
+
+/* Beyond Deployment: dashboard screenshots, two to a row on wide screens. */
+.shots { display: grid; gap: clamp(28px, 4vw, 44px); align-items: start; }
+@media (min-width: 880px) { .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.shots figure { margin: 0; }
+.shots img { width: 100%; border: 1px solid var(--teal); background: #0d1119; }
+.shots figcaption { margin-top: 10px; color: var(--mist); font-size: var(--step--1); max-width: 56ch; }
