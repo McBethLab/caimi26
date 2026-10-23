@@ -172,18 +172,39 @@ main > section + section { border-top: 1px solid rgba(86, 197, 208, 0.18); }
 .plain li + li { margin-top: 10px; }
 .plain li::marker { color: var(--cyan); }
 
-/* Hub: the lab lifecycle */
-.lifecycle { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
-.lifecycle li { display: flex; align-items: center; gap: 14px; }
-.lifecycle .dot { flex: none; width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--cyan); }
-.lifecycle .stage { font-weight: 800; font-size: var(--step-1); }
-.lifecycle .by { color: var(--mist); font-size: var(--step--1); }
+/* Hub: the lab lifecycle. One line joins the stages, down the left on a phone
+   and across the top on a wide screen. Each stage draws the piece of line to
+   the next one, from dot centre to dot centre, so it stops at the last stage;
+   the dots sit on top, and the hollow one is filled with the page colour. */
+.lifecycle {
+  --dot: 18px;
+  --gap: 18px;
+  --dot-top: calc((var(--step-1) * 1.25 - var(--dot)) / 2);  /* centres a dot on its stage name */
+  display: grid; gap: var(--gap); margin: 0; padding: 0; list-style: none;
+}
+.lifecycle li { display: flex; align-items: flex-start; gap: 14px; position: relative; }
+.lifecycle .dot {
+  position: relative; z-index: 1; flex: none;
+  width: var(--dot); height: var(--dot); margin-top: var(--dot-top);
+  border-radius: 50%; border: 3px solid var(--cyan); background: var(--deep);
+}
+.lifecycle li:not(:last-child)::before {
+  content: ""; position: absolute; background: var(--cyan);
+  left: calc(var(--dot) / 2 - 1px); width: 2px;
+  top: calc(var(--dot-top) + var(--dot) / 2);
+  bottom: calc(-1 * (var(--gap) + var(--dot-top) + var(--dot) / 2));
+}
+.lifecycle .stage { display: block; font-weight: 800; font-size: var(--step-1); line-height: 1.25; }
+.lifecycle .by { display: block; color: var(--mist); font-size: var(--step--1); }
 .lifecycle li[data-project="engine"] .dot { background: var(--cyan); }
 .lifecycle li[data-project="qa"] .dot { background: var(--marker); border-color: var(--marker); }
 @media (min-width: 880px) {
-  .lifecycle { grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
-  .lifecycle::before { content: ""; position: absolute; left: 9px; right: 9px; top: 9px; height: 2px; background: var(--cyan); }
-  .lifecycle li { flex-direction: column; align-items: flex-start; gap: 10px; position: relative; }
+  .lifecycle { --gap: 0px; --dot-top: 0px; grid-template-columns: repeat(5, 1fr); }
+  .lifecycle li { flex-direction: column; gap: 10px; }
+  .lifecycle li:not(:last-child)::before {
+    left: calc(var(--dot) / 2); right: calc(var(--dot) / -2); width: auto;
+    top: calc(var(--dot) / 2 - 1px); bottom: auto; height: 2px;
+  }
 }
 
 .projects { display: grid; gap: clamp(28px, 5vw, 56px); }
